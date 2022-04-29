@@ -41,7 +41,7 @@ export const loginApi = async (payload: {
             { headers }
         )
         const loginUser = JSON.stringify(response.data)
-        alert('진행 6 : 응답성공 ' + loginUser)
+        // alert('진행 6 : 응답성공 ' + loginUser)
         localStorage.setItem("loginUser", loginUser)
         return response.data
     } catch (err) {
@@ -56,6 +56,35 @@ export const logoutApi = async () => {
             { headers }
         )
     } catch (err) {
+        return err;
+    }
+}
+
+export const delUserApi = async (payload: {
+    userid: string,
+}) => {
+    try {
+        const response: AxiosResponse<unknown, UserType[]> = await axios.delete(`${SERVER}/user`,
+            { params: { ...payload } },
+            { headers }
+        )
+        return response.data;
+    } catch (err) {
+        return err;
+    }
+}
+
+export const modifyUserApi = async (payload: {
+    userid: string, password: string, email: string,
+    name: string, phone: string, birth: string, address: string
+}) => {
+    try {
+        const response: AxiosResponse<unknown, UserType[]> = await axios.put(`${SERVER}/user`,
+            { params: { ...payload } },
+            { headers })
+        console.log('modify response', response)
+    } catch (err) {
+        console.log('mdofiy error')
         return err;
     }
 }

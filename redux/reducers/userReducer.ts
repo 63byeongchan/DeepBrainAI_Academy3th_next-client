@@ -8,6 +8,7 @@ export interface UserType {
     phone: string;
     birth: string;
     address: string;
+    token: string;
 }
 
 export interface UserState {
@@ -62,18 +63,32 @@ const userSlice = createSlice({
             localStorage.clear()
             window.location.href = '/'
         },
-        delUserRequest(state: UserState) {
+        delUserRequest(state: UserState, { payload }) {
             state.loading = false;
-            localStorage.clear()
-            window.location.href = '/'
         },
         delUserSuccess(state: UserState, { payload }) {
             state.data = [...state.data, payload]
             state.loading = false;
-
+            if (!payload.acknowledged) return
+            localStorage.clear()
+            window.location.href = '/'
+            alert('탈퇴가 성공적으로 처리되었습니다.')
         },
         delUserFailure(state: UserState, { payload }) {
             state.data = payload;
+            state.loading = false;
+        },
+        modifyUserRequest(state: UserState, { payload }) {
+            console.log('수정 request')
+            state.data = payload;
+            state.loading = false;
+        },
+        modifyUserSuccess(state: UserState, { payload }) {
+            // state.data = [...state.data]
+            state.loading = false;
+        },
+        modifyFailure(state: UserState, { payload }) {
+            state.data = [...state.data, payload]
             state.loading = false;
         },
     }

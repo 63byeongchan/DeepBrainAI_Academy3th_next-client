@@ -11,16 +11,18 @@ export default function Nav() {
   const router = useRouter()
   const basicUrls = ["/basic/counter", "/basic/calc"]
   const basicSubTitle = ["Counter", "Calc"]
+  const [user, setUser] = useState()
 
 
 
   useEffect(() => {
     const loginUser = localStorage.getItem("loginUser");
+    setUser(loginUser)
     if (loginUser === null) {
       setUserUrls(["/user/join", "/user/login"])
       setUserSubTitle(["회원가입", "로그인"])
     } else {
-      setUserUrls(["/user/logout", "/user/profile", "/user/modifyUser", "/user/withdrawUser", "/user/getUsers"])
+      setUserUrls(["/user/logout", "/user/profile", "/user/modifyUser", "/user/delUser", "/user/getUsers"])
       setUserSubTitle(["로그아웃", "프로필", "회원수정", "회원탈퇴", "회원목록"])
     }
   }, [])
@@ -46,16 +48,17 @@ export default function Nav() {
         <div className="tr_fixed right">
           <SubMenu title={"User"} urls={userUrls} subTitles={userSubTitle} />
         </div>
-        <li className={`${styles.li_right} ${router.pathname === "/user/join" ? "active" : ''}`}>
-          <Link href='/user/join'>
-            <a>회원가입</a>
-          </Link>
-        </li>
-        <li className={`${styles.li_right} ${router.pathname === "/user/login" ? "active" : ''}`}>
-          <Link href='/user/login'>
-            <a>로그인</a>
-          </Link>
-        </li>
+        {userUrls.map((url, idx) => {
+          return (<>
+            <li key={url} className={`${styles.li_right} ${router.pathname === url ? "active" : ''}`}>
+              <Link key={url} href={url}>
+                <a>{userSubTitle[idx]}</a>
+              </Link>
+            </li>
+          </>)
+        })
+        }
+
         {/* <li className={styles.li}> <Link href='/user/user-list'>사용자목록</Link> </li> */}
       </ul>
       <style jsx>{` nav {

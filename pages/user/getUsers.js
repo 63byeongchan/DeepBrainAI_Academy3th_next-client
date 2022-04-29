@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function GetUsers() {
 
-    const columns = ["사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"];
+    const columns = ["No.", "사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"];
     const [data, setData] = useState([])
     useEffect(() => {
         axios.get('http://localhost:5000/user/getUsers').then((res) => {
@@ -20,7 +20,7 @@ export default function GetUsers() {
             <table className={tableStyles.table} >
                 <thead>
                     <tr>
-                        <th colSpan={6}><h1>회원목록</h1></th>
+                        <th colSpan={7}><h1>회원목록</h1></th>
                     </tr>
                     <tr>
                         {columns.map((column, index) => {
@@ -33,9 +33,10 @@ export default function GetUsers() {
                 <tbody>
                     {data?.length === 0
                         ? <tr><td colSpan={6}>{'데이터가 없습니다'}</td></tr>
-                        : data?.map((user) => {
+                        : data?.map((user, idx) => {
                             return (
                                 <tr key={user.userid}>
+                                    <td>{idx + 1}</td>
                                     <td>{user.userid}</td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
