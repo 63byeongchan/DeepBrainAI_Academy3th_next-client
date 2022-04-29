@@ -17,7 +17,7 @@ export default function Restaurant() {
             <thead>
                 <tr>
                     <th colSpan={5}>
-                        <a target='_blank' href="https://www.data.go.kr/data/15076765/fileData.do"><h2>{'행정안전부 모범음식점 리스트'}</h2></a>
+                        <a className='center' target='_blank' href="https://www.data.go.kr/data/15076765/fileData.do">{'행정안전부 모범음식점 리스트'}</a>
                     </th>
                 </tr>
                 <tr>
@@ -42,10 +42,14 @@ export default function Restaurant() {
             </tbody>
             <style jsx>{`
             a{
-                font-size : 20px;
+                font-size : 36px;
+                margin : 16px 16px;
             }
-            a:hover{
-                font-size: 20px !important;
+            a :hover{
+                color: blue;
+            }
+            th{
+                padding : 12px;
             }
             `}</style>
         </table>

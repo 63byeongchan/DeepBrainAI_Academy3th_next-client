@@ -1,26 +1,61 @@
+
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styles from "./styles/Nav.module.css";
-
+import tableStyles from './styles/table.module.css'
+import SubMenu from "./SubMenu";
 export default function Nav() {
+  const [userUrls, setUserUrls] = useState([])
+  const [userSubTitle, setUserSubTitle] = useState([])
   const router = useRouter()
+  const basicUrls = ["/basic/counter", "/basic/calc"]
+  const basicSubTitle = ["Counter", "Calc"]
+
+
+
+  useEffect(() => {
+    const loginUser = localStorage.getItem("loginUser");
+    if (loginUser === null) {
+      setUserUrls(["/user/join", "/user/login"])
+      setUserSubTitle(["회원가입", "로그인"])
+    } else {
+      setUserUrls(["/user/logout", "/user/profile", "/user/modifyUser", "/user/withdrawUser", "/user/getUsers"])
+      setUserSubTitle(["로그아웃", "프로필", "회원수정", "회원탈퇴", "회원목록"])
+    }
+  }, [])
+
   return (
     <nav className={styles.nav}>
       <ul>
-        <li className={styles.li_left}> <Link href='/'>
-          <a className={router.pathname === "/" ? "active" : ''}>HOME</a>
-        </Link> </li>
-        <div>
-          <li className={styles.li}> <Link href='/restaurant'>
-            <a className={router.pathname === "/restaurant" ? "active" : ''}>모범음식점 리스트</a>
-          </Link> </li>
+        <li className={`${styles.li_left} ${router.pathname === "/" ? "active" : ''}`}>
+          <Link href='/'>
+            <a>HOME</a>
+          </Link>
+        </li>
+        {/* <div> */}
+        <li className={`${styles.li} ${router.pathname === "/restaurant" ? "active" : ''}`}>
+          <Link href='/restaurant'>
+            <a>모범음식점 리스트</a>
+          </Link>
+        </li>
+        {/* </div> */}
+        <div className="tr_fixed left">
+          <SubMenu title={"Basic"} urls={basicUrls} subTitles={basicSubTitle} />
         </div>
-        <li className={styles.li_right}> <Link href='/user/join'>
-          <a className={router.pathname === "/user/join" ? "active" : ''}>회원가입</a>
-        </Link> </li>
-        <li className={styles.li_right}> <Link href='/user/login'>
-          <a className={router.pathname === "/user/login" ? "active" : ''}>로그인</a>
-        </Link> </li>
+        <div className="tr_fixed right">
+          <SubMenu title={"User"} urls={userUrls} subTitles={userSubTitle} />
+        </div>
+        <li className={`${styles.li_right} ${router.pathname === "/user/join" ? "active" : ''}`}>
+          <Link href='/user/join'>
+            <a>회원가입</a>
+          </Link>
+        </li>
+        <li className={`${styles.li_right} ${router.pathname === "/user/login" ? "active" : ''}`}>
+          <Link href='/user/login'>
+            <a>로그인</a>
+          </Link>
+        </li>
         {/* <li className={styles.li}> <Link href='/user/user-list'>사용자목록</Link> </li> */}
       </ul>
       <style jsx>{` nav {
@@ -52,6 +87,16 @@ export default function Nav() {
         }
         div{
           display:inline-block !important;
+        }
+        .tr_fixed{
+              position: fixed;
+              top: 3px;
+        }
+        .tr_fixed.right{
+              right: 8px;
+        }
+        .tr_fixed.left{
+              left : 8px;
         }
       `}</style>
     </nav>

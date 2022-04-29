@@ -10,7 +10,10 @@
 > *   entry point _app.js
 > * etc.. about React
 
-
+> 2th Week
+> * redux & rtk(redux tool kit)
+> * js (generator, lambda function)
+> * create user list pages
 ## Getting Started (Dev)
 
 First, run [mongo-container and backend-server](https://github.com/63byeongchan/DeepBrainAI_Academy3th_express-server) 

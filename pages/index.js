@@ -3,10 +3,21 @@ import tableStyles from './common/styles/table.module.css'
 import axios from "axios";
 export default function Home() {
   useEffect(() => {
-    axios.get("http://localhost:5000/api/now").then((res) => {
-      var data = res.data;
-      document.getElementById("timeZone").innerHTML = '<h1>현재시간: ' + data.now + '<h1>'
-    });
+    var loginUser = localStorage.getItem("loginUser")
+    console.log('loginUser :', loginUser)
+    // loginUser = JSON.parse(loginUser)
+
+    if (loginUser === null) {
+      axios.get("http://localhost:5000/api/now").then((res) => {
+        var data = res.data;
+        document.getElementById("timeZone").innerHTML = '<h1>현재시간: ' + data.now + '<h1>'
+      });
+    } else {
+      const user = JSON.parse(loginUser)
+      document.getElementById("timeZone").innerHTML = `<h1>환영합니다: ${user.name} 님</h1>`
+
+    }
+
   }, []);
   return (
     <table className={tableStyles.table}>
