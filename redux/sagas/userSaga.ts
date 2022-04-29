@@ -46,6 +46,10 @@ export function* watchJoin() {
 function* login(login: UserLoginType) {
     try {
         const response: UserLoginSuccessType = yield loginApi(login.payload)
+        if (!(response?.['userid'])) {
+            yield put(userActions.loginFailure(response))
+            return
+        }
         yield put(userActions.loginSuccess(response))
         window.location.href = '/'
     } catch (error) {

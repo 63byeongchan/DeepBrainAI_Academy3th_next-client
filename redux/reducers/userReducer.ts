@@ -48,8 +48,11 @@ const userSlice = createSlice({
             state.loading = false;
         },
         loginFailure(state: UserState, { payload }) {
+            console.log('loginFailure')
+            localStorage.clear()
             state.data = payload;
             state.loading = false;
+            alert('Login에 실패하였습니다.')
         },
         logoutRequest(state: UserState, payload) {
             state.loading = false;

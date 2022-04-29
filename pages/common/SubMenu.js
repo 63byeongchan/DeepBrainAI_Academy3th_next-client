@@ -22,7 +22,7 @@ const SubMenu = (props) => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
     >
-        {props.title}
+        <font>{props.title}</font>
     </Button>
         <Menu
             id="basic-menu"
@@ -38,7 +38,23 @@ const SubMenu = (props) => {
                     <Link href={url}>{props.subTitles[i]}</Link>
                 </MenuItem>
             })}
-        </Menu></>
+        </Menu>
+        <style jsx>
+            {`
+            font{
+                font-weight:600;
+                border-radius:15px;
+                padding : 10px;
+                background-color : skyblue;
+                transition : 0.3s;
+            }
+            font:hover{
+                background-color : #7878fb;
+                color : yellow;
+            }
+            `}
+        </style>
+    </>
 }
 
 export default SubMenu;

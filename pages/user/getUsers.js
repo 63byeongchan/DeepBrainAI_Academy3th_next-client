@@ -9,7 +9,8 @@ export default function GetUsers() {
     const [data, setData] = useState([])
     useEffect(() => {
         axios.get('http://localhost:5000/user/getUsers').then((res) => {
-            setData(res.data.users)
+            console.log('RES', res)
+            setData(res.data)
         }).catch(err => {
             alert('ERROR')
         })
@@ -21,13 +22,15 @@ export default function GetUsers() {
                     <tr>
                         <th colSpan={6}><h1>회원목록</h1></th>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         {columns.map((column, index) => {
-                            <td key={index}>{column}</td>
+                            return (
+                                <th key={index}>{column}</th>
+                            )
                         })}
                     </tr>
+                </thead>
+                <tbody>
                     {data?.length === 0
                         ? <tr><td colSpan={6}>{'데이터가 없습니다'}</td></tr>
                         : data?.map((user) => {
