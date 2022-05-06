@@ -14,6 +14,10 @@
 > * redux & rtk(redux tool kit)
 > * js (generator, lambda function)
 > * create user list pages
+
+> 3th Week
+> * redux without toolkit
+> * serverless
 ## Getting Started (Dev)
 
 First, run [mongo-container and backend-server](https://github.com/63byeongchan/DeepBrainAI_Academy3th_express-server) 

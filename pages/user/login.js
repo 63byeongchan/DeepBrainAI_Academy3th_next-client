@@ -35,7 +35,7 @@ export default function Login() {
                 </tr>
                 <tr>
                     <td><b>비밀번호</b></td>
-                    <td><input type="text" name='password' onChange={handleChange} /></td>
+                    <td><input type="password" name='password' onChange={handleChange} /></td>
                 </tr>
                 <tr>
                     <td colSpan={2}><button type="submit">로그인</button><br /></td>

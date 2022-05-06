@@ -17,7 +17,7 @@ export default function Restaurant() {
             <thead>
                 <tr>
                     <th colSpan={5}>
-                        <a className='center' target='_blank' href="https://www.data.go.kr/data/15076765/fileData.do">{'행정안전부 모범음식점 리스트'}</a>
+                        <a className='center' target='_blank' href="https://www.data.go.kr/data/15076765/fileData.do">{'행정안전부 모범음식점 리스트'}</a> <button className='add'>+ 음식점 <br></br> 추가</button>
                     </th>
                 </tr>
                 <tr>
@@ -41,6 +41,9 @@ export default function Restaurant() {
                 ))}
             </tbody>
             <style jsx>{`
+            .center{
+                margin-left : 80px;
+            }
             a{
                 font-size : 36px;
                 margin : 16px 16px;
@@ -50,6 +53,21 @@ export default function Restaurant() {
             }
             th{
                 padding : 12px;
+            }
+            .add{
+                font-weight:600;
+                border-radius : 5px;
+                background-color : #9cef9c;
+                float : right;
+                width : 80px;
+                transition : 0.2s;
+            }
+            .add:hover{
+                color : yellow;
+                background-color : #12b012;
+            }
+            .add:active{
+                background-color : #d0ecbe;
             }
             `}</style>
         </table>

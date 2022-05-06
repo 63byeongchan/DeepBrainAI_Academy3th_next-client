@@ -37,7 +37,7 @@ export default function Join() {
                 </tr>
                 <tr>
                     <td><b>비밀번호</b></td>
-                    <td><input type="text" name='password' placeholder='패스워드를 입력해주세요' onChange={handleChange} /></td>
+                    <td><input type="password" name='password' placeholder='패스워드를 입력해주세요' onChange={handleChange} /></td>
                 </tr>
                 <tr>
                     <td htmlFor=""><b>이메일</b></td>

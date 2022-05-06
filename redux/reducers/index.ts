@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import { HYDRATE } from 'next-redux-wrapper'
 import users from './userReducer.ts'
+import restaurant from "./restaurantReducer.ts";
 
 
 const rootReducer = (state: any, action: any) => {
@@ -11,7 +12,8 @@ const rootReducer = (state: any, action: any) => {
         };
     }
     return combineReducers({
-        users
+        users,
+        restaurant
     })(state, action)
 }
 export default rootReducer
