@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import tableStyles from "../../components/common/styles/table.module.css";
-import { restaurantActions } from "../../redux/reducers/restaurantReducer";
+import tableStyles from "../common/styles/table.module.css";
+import { restaurantActions } from "../../redux/reducers/restaurantReducer.ts";
 
 const AddRestaurant = () => {
     const [restaurant, setRestaurant] = useState({

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { restaurantActions } from "../../redux/reducers/restaurantReducer.ts";
-import tableStyles from "../../components/common/styles/table.module.css";
+import tableStyles from "../common/styles/table.module.css";
 
 export async function getServerSideProps({ params }) {
     const id = params.id
@@ -17,7 +17,7 @@ export async function getServerSideProps({ params }) {
 }
 
 const updateRestaurant = ({ data, id }) => {
-    const [Restaurant, setRestaurant] = useState({
+    const [restaurant, setRestaurant] = useState({
         id: id,
         service_id: data.service_id,
         local_entity_code: data.local_entity_code,
@@ -35,7 +35,7 @@ const updateRestaurant = ({ data, id }) => {
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
-        setRestaurant({ ...Restaurant, [name]: value });
+        setRestaurant({ ...restaurant, [name]: value });
     };
 
     const updateRestaurant = (e) => {
@@ -83,7 +83,7 @@ const updateRestaurant = ({ data, id }) => {
                             <b>음식유형</b>
                         </td>
                         <td>
-                            <input type="text" name="food_type" value={restaurant.type} onChange={handleChange} />
+                            <input type="text" name="food_type" value={restaurant.food_type} onChange={handleChange} />
                         </td>
                     </tr>
                     <tr>
@@ -91,7 +91,7 @@ const updateRestaurant = ({ data, id }) => {
                             <b>메인메뉴</b>
                         </td>
                         <td>
-                            <input type="text" name="food_main" value={restaurant.address} onChange={handleChange} />
+                            <input type="text" name="food_main" value={restaurant.food_main} onChange={handleChange} />
                         </td>
                     </tr>
 
@@ -100,7 +100,7 @@ const updateRestaurant = ({ data, id }) => {
                             <b>주소</b>
                         </td>
                         <td>
-                            <input type="text" name="address" value={restaurant.glamping} onChange={handleChange} />
+                            <input type="text" name="address" value={restaurant.address} onChange={handleChange} />
                         </td>
                     </tr>
 
@@ -109,7 +109,7 @@ const updateRestaurant = ({ data, id }) => {
                             <b>연락처</b>
                         </td>
                         <td>
-                            <input type="text" name="phone" value={restaurant.caravan} onChange={handleChange} />
+                            <input type="text" name="phone" value={restaurant.phone} onChange={handleChange} />
                         </td>
                     </tr>
 
